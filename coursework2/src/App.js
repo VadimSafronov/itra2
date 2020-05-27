@@ -17,7 +17,7 @@ import { darkTheme } from './Themes/dark'
 import { lightTheme } from './Themes/light'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import {
-  BrowserRouter,
+  Switch,
   Route
   
 } from "react-router-dom";
@@ -46,11 +46,13 @@ const App = (props) => {
 
    
      <Header/>
+     <Switch>
 
      
          <Route path='/login' exact component={Login} />
          <Route path='/registration' exact component={Registration} />
          <Route path='/profile/:userId?' exact component={Profile} />
+         </Switch>
          
 
          
