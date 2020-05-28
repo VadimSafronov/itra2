@@ -4,11 +4,13 @@ const messages =
     "sign.password": "Password",
     "sign.logo": "Sign In",
     "sign.signUp": "Don't have an account? Sign Up",
+    "sign.google": "Sign in through Google",
     
 
     "signup.name": "First Name",
     "signup.surname": "Last Name",
     "signup.logo": "Sign Up",
+
 
     "header.logo": "InvestClub",
     "header.locale": "English",

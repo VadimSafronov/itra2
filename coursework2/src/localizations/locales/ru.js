@@ -4,6 +4,7 @@ const messages =
     "sign.password": "Пароль",
     "sign.logo": "Войти",
     "sign.signUp": "У вас нет аккаунта? Создайте!",
+    "sign.google": "Зайти через Google",
     
 
     "signup.name": "Имя",
