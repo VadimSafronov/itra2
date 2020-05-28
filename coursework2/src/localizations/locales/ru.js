@@ -18,8 +18,20 @@ const messages =
     'requiredField': 'Обязательное поле',
     'maxLength': 'Вы превысили максимальную длину ',
 
-    'sign.error': 'Что-то не так с вашим паролем или логином,попробуйте ввести еще раз',
-    'signup.error': 'Этот логин уже занят,придумайте другой',
+    'sign.error500': 'Что-то не так с вашим паролем или логином,попробуйте ввести еще раз',
+    'signup.error204': 'Этот логин уже занят,придумайте другой',
+
+    'admin.tableLogo': 'Панель Администратора',
+    'admin.selected': 'Выбрано',
+    'admin.headId': 'Код',
+    'admin.headName': 'Имя',
+    'admin.headBlocked': 'Заблокирован',
+    'admin.headAdmin': 'Админ',
+    'admin.headUpdated': 'Обновлен',
+    'admin.headCreated': 'Создан',
+    'admin.previousPage': 'Предыдущая страница',
+    'admin.nextPage': 'Следующая страница',
+    'admin.error204': 'Ошибка,такой записи нет в БД',
     
     
 

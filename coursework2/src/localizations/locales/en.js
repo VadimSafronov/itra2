@@ -22,7 +22,7 @@ const messages =
     'signup.error204': 'Login is already taken,choose new one',
 
     'admin.tableLogo': 'Admin panel',
-    'admin.selected': 'selected',
+    'admin.selected': 'Selected',
     'admin.headId': 'ID',
     'admin.headName': 'Name',
     'admin.headBlocked': 'Blocked',
