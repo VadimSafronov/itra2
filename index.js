@@ -4,6 +4,7 @@ const path = require("path");
 const db = require("./models");
 const session = require("express-session");
 const authRoute = require("./Routes/auth");
+//const profileRouter = require("./Routes/auth");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -15,7 +16,7 @@ app.use(
     cookie: { secure: false },
   })
 );
-app.use('/api/profile', profileRouter)
+//app.use('/api/profile', profileRouter)
 app.use("/api/auth", authRoute);
 app.use(express.static(path.join(__dirname, "coursework2", "build")));
 
