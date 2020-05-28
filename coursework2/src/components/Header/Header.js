@@ -56,7 +56,6 @@ export default function Header() {
           <LanguageButton/>
           <ThemeSwitcher/>
           <ProfileButton />
-          <Button color="inherit" size="large"  component={RouterLink} to="/login" >{translate('sign.logo')}</Button>
         </Toolbar>
       </AppBar>
     </div>
