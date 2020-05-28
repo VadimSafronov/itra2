@@ -15,6 +15,7 @@ app.use(
     cookie: { secure: false },
   })
 );
+app.use('/api/profile', profileRouter)
 app.use("/api/auth", authRoute);
 app.use(express.static(path.join(__dirname, "coursework2", "build")));
 
