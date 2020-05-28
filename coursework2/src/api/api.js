@@ -39,4 +39,27 @@ export const profileAPI = {
         return instance.post('profile/user/get', { userId })
     },
 }
+export const adminAPI = {
+    getUsersCount() {
+        return instance.get('admin/users/count')
+    },
+    getUsers(offset, limit) {
+        return instance.post('admin/users/get', { offset, limit })
+    },
+    setAdmins(ids) {
+        return instance.post('admin/admins/add', { ids })
+    },
+    deleteAdmins(ids) {
+        return instance.post('admin/admins/delete', { ids })
+    },
+    blockUsers(ids) {
+        return instance.post('admin/users/block', { ids })
+    },
+    unblockUsers(ids) {
+        return instance.post('admin/users/unblock', { ids })
+    },
+    deleteUsers(ids) {
+        return instance.post('admin/users/delete', { ids })
+    },
+}
 
