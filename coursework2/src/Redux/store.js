@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import { ThemeReducer } from './ThemeReducer'
 import { localeReducer } from './localeReducer'
 import { authReducer } from './authReducer'
+import { adminReducer } from './adminReducer'
 import { appReducer } from './appReducer'
 
 
@@ -13,6 +14,7 @@ const reducers = combineReducers({
     form: formReducer,
     theme: ThemeReducer,
     locale: localeReducer,
+    admin: adminReducer,
     auth: authReducer,
     app: appReducer,
     
