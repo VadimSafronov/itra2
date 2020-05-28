@@ -21,5 +21,10 @@ const Profile = (props) => {
         </div>
     )
 }
+const mapStateToProps = (state) => ({
+    userId: state.auth.userId,
+    isAuth: state.auth.isAuth,
+    isAdmin: state.auth.isAdmin,
+})
 
 export default compose(connect(mapStateToProps), withLoginRedirect)(Profile)
