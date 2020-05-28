@@ -1,5 +1,5 @@
 import React from 'react'
-import { withLogoutRedirect } from '../../hoc/withAuthRedirect'
+import { withLoginRedirect } from '../../hoc/withAuthRedirect'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 
@@ -22,4 +22,4 @@ const Profile = (props) => {
     )
 }
 
-export default compose(connect(mapStateToProps), withLogoutRedirect)(Profile)
+export default compose(connect(mapStateToProps), withLoginRedirect)(Profile)
