@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import translate from '../../../localization/translate'
+import translate from '../../../localizations/translate'
 import { connect } from 'react-redux'
 import { logout } from '../../../Redux/authReducer'
 
