@@ -6,6 +6,7 @@ import { login } from "../../Redux/authReducer";
 import { withLoginRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
 import GoogleAuth from "./GoogleAuth";
+import FacebookAuth from './FacebookAuth'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +45,7 @@ const Login = (props) => {
       <div className={classes.loginContainer}>
         <div className={classes.socialGroup}>
           <GoogleAuth />
+          <FacebookAuth />
         </div>
         <SignIn onSubmit={props.login} />
       </div>
