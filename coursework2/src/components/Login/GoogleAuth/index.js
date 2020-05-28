@@ -13,7 +13,7 @@ const GoogleAuth = (props) => {
 
     return (
         <GoogleLogin
-            clientId='527766057569-8f4bb7p9vtnj310cno38n0jogvb5fhaj.apps.googleusercontent.com'
+            clientId='211266093621-09s90npl4pu6ruv3hrvvc3v9ttqh1q5g.apps.googleusercontent.com'
             render={(renderProps) => <GoogleButton {...renderProps} />}
             onSuccess={responseGoogle}
             cookiePolicy={'single_host_origin'}
