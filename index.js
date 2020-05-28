@@ -4,6 +4,7 @@ const path = require("path");
 const db = require("./models");
 const session = require("express-session");
 const authRoute = require("./Routes/auth");
+const adminRouter = require('./Routes/admin')
 //const profileRouter = require("./Routes/auth");
 
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use(
 );
 //app.use('/api/profile', profileRouter)
 app.use("/api/auth", authRoute);
+app.use('/api/admin', adminRouter)
 app.use(express.static(path.join(__dirname, "coursework2", "build")));
 
 app.get("*", (req, res) => {
