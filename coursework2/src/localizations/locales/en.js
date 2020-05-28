@@ -18,8 +18,19 @@ const messages =
     'requiredField': 'Field is required',
     'maxLength': 'Max Length ',
 
-    'login.error500': 'Something wrong with your password or login,please try again',
+    'sign.error500': 'Something wrong with your password or login,please try again',
     'signup.error204': 'Login is already taken,choose new one',
+
+    'admin.tableLogo': 'Admin panel',
+    'admin.selected': 'selected',
+    'admin.headId': 'ID',
+    'admin.headName': 'Name',
+    'admin.headBlocked': 'Blocked',
+    'admin.headAdmin': 'Admin',
+    'admin.headUpdated': 'Updated',
+    'admin.headCreated': 'Created',
+    'admin.previousPage': 'Previous page',
+    'admin.nextPage': 'Next page',
     
 
 
