@@ -12,6 +12,8 @@ const messages =
 
     "header.logo": "InvestClub",
     "header.locale": "English",
+    "header.profile": "Profile",
+    "header.logout": "Logout",
 
     'requiredField': 'Field is required',
     'maxLength': 'Max Length ',

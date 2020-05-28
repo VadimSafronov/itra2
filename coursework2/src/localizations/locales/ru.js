@@ -12,6 +12,8 @@ const messages =
 
     "header.logo": "Клуб Инвестиций",
     "header.locale": "Русский",
+    "header.profile": "Профиль",
+    "header.logout": "Выйти",
 
     'requiredField': 'Обязательное поле',
     'maxLength': 'Вы превысили максимальную длину ',

@@ -34,7 +34,7 @@ const ProfileButton = (props) => {
                 </IconButton>
             ) : (
                 <Button color='inherit' size='large' component={RouterLink} to='/login'>
-                    {translate('header.signIn')}
+                    {translate('sign.logo')}
                 </Button>
             )}
 

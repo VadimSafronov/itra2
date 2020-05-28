@@ -1,5 +1,5 @@
 import React from 'react'
-import { withLoginRedirect } from '../../hoc/withAuthRedirect'
+import { withLogoutRedirect } from '../../hoc/withAuthRedirect'
 
 const Profile = (props) => {
     return (
@@ -20,4 +20,4 @@ const Profile = (props) => {
     )
 }
 
-export default withLoginRedirect(Profile)
+export default withLogoutRedirect(Profile)
