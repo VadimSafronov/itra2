@@ -5,9 +5,10 @@ import Header from "./components/Header/Header";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import Profile from "./components/Profile";
+import Admin from './components/Admin'
+
 import { initializeApp } from "./Redux/appReducer";
 import LinearProgress from "@material-ui/core/LinearProgress";
-
 import { localeMessages } from "./localizations/index";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core";
@@ -17,6 +18,7 @@ import { darkTheme } from "./Themes/dark";
 import { lightTheme } from "./Themes/light";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Switch, Route } from "react-router-dom";
+
 
 const getTheme = (title) => {
   return title === "light" ? lightTheme : darkTheme;
@@ -44,6 +46,7 @@ const App = (props) => {
               <Route path="/login" exact component={Login} />
               <Route path="/registration" exact component={Registration} />
               <Route path="/profile/:userId?" exact component={Profile} />
+              <Route path='/admin' exact component={Admin} />
             </Switch>
           </>
         )}
