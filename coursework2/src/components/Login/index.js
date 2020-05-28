@@ -21,14 +21,17 @@ const Login = (props) => {
 
     return (
         
-            
+            <div>
             
 
                 
 
-                <SignIn onSubmit={props.login} />
+            
+
                 <div className={classes.socialGroup}>
                 <GoogleAuth />
+                </div>
+                <SignIn onSubmit={props.login} />
                 </div>
         
         
