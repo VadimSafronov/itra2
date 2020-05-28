@@ -1,1 +1,1 @@
-# itra2
+# coursework on React , you can see this PRETTY GOOD SPA there: https://itra2.herokuapp.com/
