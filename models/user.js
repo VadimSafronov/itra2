@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         surname: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
     })
     return Users

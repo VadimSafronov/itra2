@@ -20,4 +20,4 @@ const Profile = (props) => {
     )
 }
 
-export default withLogoutRedirect(Profile)
+export default compose(connect(mapStateToProps), withLogoutRedirect)(Profile)

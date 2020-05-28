@@ -10,6 +10,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import LanguageButton from './Parts/LanguageButton';
 import translate from '../../localizations/translate'
 import ThemeSwitcher from './Parts/ThemeSwitcher'
+import ProfileButton from './Parts/ProfileButton'
 import Link from '@material-ui/core/Link'
 
 
@@ -54,6 +55,7 @@ export default function Header() {
           </Link>
           <LanguageButton/>
           <ThemeSwitcher/>
+          <ProfileButton />
           <Button color="inherit" size="large"  component={RouterLink} to="/login" >{translate('sign.logo')}</Button>
         </Toolbar>
       </AppBar>
