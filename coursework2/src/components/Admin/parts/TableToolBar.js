@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import translate from '../../localizations/translate'
+import translate from '../../../localizations/translate'
 import { connect } from 'react-redux'
 
 import Toolbar from '@material-ui/core/Toolbar'
