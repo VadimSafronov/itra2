@@ -37,10 +37,10 @@ const App = (props) => {
       <GlobalStyles />
       <IntlProvider locale={locale} messages={localeMessages[locale]}>
         <CssBaseline />
-        {!props.initialized ? (
+        {/* {!props.initialized ? (
           <LinearProgress />
         ) : (
-          <>
+          <> */}
             <Header />
             <Switch>
               <Route path="/login" exact component={Login} />
@@ -48,8 +48,8 @@ const App = (props) => {
               <Route path="/profile/:userId?" exact component={Profile} />
               <Route path='/admin' exact component={Admin} />
             </Switch>
-          </>
-        )}
+          {/* </>
+        )} */}
       </IntlProvider>
     </ThemeProvider>
   );

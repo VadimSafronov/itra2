@@ -24,10 +24,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        surname: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
+        // surname: {
+        //     type: DataTypes.STRING,
+        //     allowNull: true,
+        // },
     })
     return Users
 }
