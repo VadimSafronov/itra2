@@ -13,7 +13,7 @@ const FacebookAuth = (props) => {
 
     return (
         <FacebookLogin
-            appId='271109940744192'
+            appId='2678380369063016'
             fields='name'
             callback={responseFacebook}
             render={(renderProps) => <FacebookButton {...renderProps} />}
