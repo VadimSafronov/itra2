@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const db = require('../models')
-const { response, isNumber } = require('../common/routeMiddleware')
+const { response, isNumber } = require('../common/routeMiddleware.js')
 
 router.post('/bonuses/count', (req, res) => {
     const { userId } = req.body
