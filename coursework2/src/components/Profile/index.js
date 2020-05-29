@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { Redirect } from 'react-router-dom'
+import { Container } from '@material-ui/core'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withLogoutRedirect } from '../../hoc/withAuthRedirect'
-import { Container } from '@material-ui/core'
-import BonusList from './parts/BonusList.js'
-import CompanyList from './parts/CompanyList'
-import InformationBlock from './parts/InformationBlock'
+
+import BonusList from './BonusList'
+import CompanyList from './CompanyList'
+import InformationBlock from './InformationBlock'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,9 +22,17 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = (props) => {
     const classes = useStyles()
+    const urlId = Math.abs(parseInt(props.match.params.userId, 10))
+    let userId = urlId
+    
+    if (isNaN(urlId)) {
+        if (props.isAuth) {
+            userId = props.userId
+        } else {
+            return <Redirect to='/login' />
+        }
+    }
 
-    const urlId = Number(props.match.params.userId, 10)
-    const userId = isNaN(urlId) ? props.userId : urlId
     const isOwner = userId === props.userId || props.isAdmin
 
     return (
@@ -36,7 +46,7 @@ const Profile = (props) => {
 
 const mapStateToProps = (state) => ({
     userId: state.auth.userId,
+    isAuth: state.auth.isAuth,
     isAdmin: state.auth.isAdmin,
 })
-
 export default compose(connect(mapStateToProps), withLogoutRedirect)(Profile)
