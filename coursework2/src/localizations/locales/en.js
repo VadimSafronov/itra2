@@ -33,6 +33,24 @@ const messages =
     'admin.headCreated': 'Created',
     'admin.previousPage': 'Previous page',
     'admin.nextPage': 'Next page',
+
+    'profile.bonusList.tableTitle': 'Paid bonuses list',
+    'profile.bonusList.bonusTitle': 'Title',
+    'profile.bonusList.bonusAmount': 'Amount',
+    'profile.bonusList.bonusDescription': 'Description',
+
+    'profile.companyList.tableTitle': 'List of companies',
+    'profile.companyList.companyId': 'ID',
+    'profile.companyList.companyTitle': 'Title',
+    'profile.companyList.currentAmount': 'Current amount',
+    'profile.companyList.targetAmount': 'Target amount',
+    'profile.companyList.expirationDate': 'Expiration date',
+
+    'profile.informationBlock.userInfo': 'Personal information',
+    'profile.informationBlock.name': 'Name:',
+    'profile.informationBlock.surname': 'Surname:',
+    'profile.informationBlock.country': 'Country:',
+    'profile.informationBlock.city': 'City:',
     
 
 

@@ -33,6 +33,25 @@ const messages =
     'admin.previousPage': 'Предыдущая страница',
     'admin.nextPage': 'Следующая страница',
     'admin.error204': 'Ошибка,такой записи нет в БД',
+
+
+    'profile.bonusList.tableTitle': 'Список оплаченных бонусов',
+    'profile.bonusList.bonusTitle': 'Название',
+    'profile.bonusList.bonusAmount': 'Сумма',
+    'profile.bonusList.bonusDescription': 'Описание',
+
+    'profile.companyList.tableTitle': 'Список компаний',
+    'profile.companyList.companyId': 'Код',
+    'profile.companyList.companyTitle': 'Название',
+    'profile.companyList.currentAmount': 'Текущая сумма',
+    'profile.companyList.targetAmount': 'Целевая сумма',
+    'profile.companyList.expirationDate': 'Дата окончания',
+
+    'profile.informationBlock.userInfo': 'Личная информация',
+    'profile.informationBlock.name': 'Имя:',
+    'profile.informationBlock.surname': 'Фамилия:',
+    'profile.informationBlock.country': 'Страна:',
+    'profile.informationBlock.city': 'Город:',
     
     
 
