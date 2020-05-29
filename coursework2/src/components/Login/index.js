@@ -41,18 +41,18 @@ const Login = (props) => {
   const classes = useStyles();
 
   return (
-    // <div className={classes.root}>
-    //   <div className={classes.loginContainer}>
-    //   <div className={classes.socialGroup}>
-    //       <GoogleAuth />
-    //       <FacebookAuth />
-    //     </div>
+    <div className={classes.root}>
+      <div className={classes.loginContainer}>
+      <div className={classes.socialGroup}>
+          <GoogleAuth />
+          <FacebookAuth />
+        </div>
       
         <SignIn onSubmit={props.login} />
        
-    //   {/* </div>
+      </div>
       
-    // </div> */}
+   </div> 
     
   );
 };
