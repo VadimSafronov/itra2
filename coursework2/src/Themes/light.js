@@ -30,7 +30,7 @@ export const lightTheme = {
             secondary: '#000',
         },
         background: {
-            default: '#DC004E',
+            default: '#fff',
         },
     },
 }
