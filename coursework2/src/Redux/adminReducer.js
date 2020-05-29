@@ -7,13 +7,13 @@ const EDIT_USERS_STATUS = 'EDIT_USERS_STATUS'
 const EDIT_ADMINS_STATUS = 'EDIT_ADMINS_STATUS'
 const DELETE_USERS = 'DELETE_USERS'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
-const TOGGLE_ERROR = 'ERROR'
+const TOGGLE_STATUS = 'TOGGLE_STATUS'
 
 const initialState = {
     usersCount: 0,
     users: [],
     isFetching: false,
-    isError: false,
+    statusCode: 0,
 }
 
 export const adminReducer = (state = initialState, action) => {
@@ -74,10 +74,10 @@ export const adminReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching,
             }
-        case TOGGLE_ERROR:
+        case TOGGLE_STATUS:
             return {
                 ...state,
-                isError: action.isError,
+                statusCode: action.statusCode,
             }
         default:
             return state
@@ -89,15 +89,16 @@ const reduceUsersCount = (value) => ({ type: REDUCE_USERS_COUNT, value })
 const setUsers = (users) => ({ type: SET_USERS, users })
 const setUsersStatus = (usersId, isBlocked) => ({ type: EDIT_USERS_STATUS, usersId, isBlocked })
 const setAdminsStatus = (usersId, isAdmin) => ({ type: EDIT_ADMINS_STATUS, usersId, isAdmin })
-const setDeletedUsers = (usersId) => ({ type: DELETE_USERS, usersId })
+const removeDeletedUsers = (usersId) => ({ type: DELETE_USERS, usersId })
 const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
-const setError = (isError) => ({ type: TOGGLE_ERROR, isError })
+const setStatusCode = (statusCode) => ({ type: TOGGLE_STATUS, statusCode })
 
 export const getUsersCount = () => async (dispatch) => {
     dispatch(toggleIsFetching(true))
     const response = await adminAPI.getUsersCount()
 
     dispatch(toggleIsFetching(false))
+
     if (response.data.statusCode === 200) {
         dispatch(setUsersCount(response.data.data))
     } else {
@@ -110,6 +111,7 @@ export const getUsers = (offset, limit) => async (dispatch) => {
     const response = await adminAPI.getUsers(offset, limit)
 
     dispatch(toggleIsFetching(false))
+
     if (response.data.statusCode === 200) {
         dispatch(setUsers(response.data.data))
     } else {
@@ -122,9 +124,10 @@ export const setAdmins = (ids) => async (dispatch) => {
     const response = await adminAPI.setAdmins(ids)
 
     dispatch(toggleIsFetching(false))
+
     if (response.data.statusCode === 200) {
         if (response.data.data !== ids.length) {
-            dispatch(setError(true))
+            dispatch(setStatusCode(204))
         }
         dispatch(setAdminsStatus(ids, true))
     } else {
@@ -137,9 +140,10 @@ export const deleteAdmins = (ids) => async (dispatch) => {
     const response = await adminAPI.deleteAdmins(ids)
 
     dispatch(toggleIsFetching(false))
+
     if (response.data.statusCode === 200) {
         if (response.data.data !== ids.length) {
-            dispatch(setError(true))
+            dispatch(setStatusCode(204))
         }
         dispatch(setAdminsStatus(ids, false))
     } else {
@@ -152,9 +156,10 @@ export const blockUsers = (ids) => async (dispatch) => {
     const response = await adminAPI.blockUsers(ids)
 
     dispatch(toggleIsFetching(false))
+
     if (response.data.statusCode === 200) {
         if (response.data.data !== ids.length) {
-            dispatch(setError(true))
+            dispatch(setStatusCode(204))
         }
         dispatch(setUsersStatus(ids, true))
     } else {
@@ -167,9 +172,10 @@ export const unblockUsers = (ids) => async (dispatch) => {
     const response = await adminAPI.unblockUsers(ids)
 
     dispatch(toggleIsFetching(false))
+
     if (response.data.statusCode === 200) {
         if (response.data.data !== ids.length) {
-            dispatch(setError(true))
+            dispatch(setStatusCode(204))
         }
         dispatch(setUsersStatus(ids, false))
     } else {
@@ -182,9 +188,10 @@ export const deleteUsers = (ids, usersLength, usersCount) => async (dispatch) =>
     const response = await adminAPI.deleteUsers(ids)
 
     dispatch(toggleIsFetching(false))
+
     if (response.data.statusCode === 200) {
         dispatch(reduceUsersCount(ids.length))
-        dispatch(setDeletedUsers(ids))
+        dispatch(removeDeletedUsers(ids))
 
         if (usersLength !== usersCount) {
             const lastDownloadPage = usersLength / 10 - 1
@@ -193,10 +200,10 @@ export const deleteUsers = (ids, usersLength, usersCount) => async (dispatch) =>
             dispatch(getUsers(offset, limit))
         }
     } else {
-        window.window.location.reload()
+        window.location.reload()
     }
 }
 
-export const toggleError = () => (dispatch) => {
-    dispatch(setError(false))
+export const toggleStatus = () => (dispatch) => {
+    dispatch(setStatusCode(0))
 }

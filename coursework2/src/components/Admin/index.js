@@ -1,31 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import translate from '../../localizations/translate'
-
-import Paper from '@material-ui/core/Paper'
-import TableContainer from '@material-ui/core/TableContainer'
-import Table from '@material-ui/core/Table'
-import Snackbar from '@material-ui/core/Snackbar'
-import MuiAlert from '@material-ui/lab/Alert'
-import TableHeadUsers from './TableHead'
-import TableToolbarUsers from './TableToolBar'
-import TableBodyUsers from './TableBody'
-import TablePagination from '@material-ui/core/TablePagination'
-
-import { withAdminRedirect } from '../../hoc/withAdminRedirect'
-import { Container } from '@material-ui/core'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import {
-    getUsersCount,
-    getUsers,
-    setAdmins,
-    deleteAdmins,
-    blockUsers,
-    unblockUsers,
-    deleteUsers,
-    toggleError,
-} from '../../Redux/adminReducer'
+import { getUsersCount, getUsers, toggleStatus } from '../../Redux/adminReducer'
+import { withAdminRedirect } from '../../hoc/withAdminRedirect'
+import { Container } from '@material-ui/core'
+import Paper from '@material-ui/core/Paper'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableToolbarUsers from './parts/TableToolbar'
+import Table from '@material-ui/core/Table'
+import TableHeadUsers from './parts/TableHead'
+import TableBodyUsers from './parts/TableBody'
+import TablePagination from '@material-ui/core/TablePagination'
+//import { InfoAlert } from '../common/InfoAlert'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,10 +31,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-function Alert(props) {
-    return <MuiAlert elevation={6} variant='filled' {...props} />
-}
-
 const Admin = (props) => {
     const classes = useStyles()
 
@@ -57,72 +41,12 @@ const Admin = (props) => {
 
     const [selected, setSelected] = useState([])
     const [page, setPage] = useState(0)
-    const users = props.users
-
-    const handleSelectAllClick = (event) => {
-        if (event.target.checked) {
-            const newSelecteds = users.map((user) => user.id)
-            setSelected(newSelecteds)
-            return
-        }
-        setSelected([])
-    }
-
-    const handleClick = (event, id) => {
-        const selectedIndex = selected.indexOf(id)
-        let newSelected = [...selected]
-
-        if (selectedIndex === -1) {
-            newSelected.push(id)
-        } else {
-            newSelected.splice(selectedIndex, 1)
-        }
-
-        setSelected(newSelected)
-    }
-
-    const isSelected = (id) => {
-        return selected.indexOf(id) !== -1
-    }
 
     const handleChangePage = (event, newPage) => {
-        if (users.length <= newPage * 10) {
+        if (props.users.length <= newPage * 10) {
             props.getUsers(newPage * 10, 10)
         }
-
         setPage(newPage)
-    }
-
-    const onFollowing = () => {
-        if (selected.length === 0) return
-        window.open('profile/' + selected[0], '_blank')
-    }
-
-    const onAdminsAdd = () => {
-        if (selected.length === 0) return
-        props.setAdmins(selected)
-    }
-
-    const onAdminsDelete = () => {
-        if (selected.length === 0) return
-        props.deleteAdmins(selected)
-    }
-
-    const onUsersBlock = () => {
-        if (selected.length === 0) return
-        props.blockUsers(selected)
-    }
-
-    const onUsersUnblock = () => {
-        if (selected.length === 0) return
-        props.unblockUsers(selected)
-    }
-
-    const onUsersDelete = () => {
-        if (selected.length === 0) return
-        if (selected.length > 10) setPage(0)
-        props.deleteUsers(selected, users.length, props.usersCount)
-        setSelected([])
     }
 
     return (
@@ -130,29 +54,30 @@ const Admin = (props) => {
             <Paper className={classes.paper}>
                 <TableContainer>
                     <TableToolbarUsers
-                        numSelected={selected.length}
                         selected={selected}
-                        onFollowing={onFollowing}
-                        onAdminsAdd={onAdminsAdd}
-                        onAdminsDelete={onAdminsDelete}
-                        onUsersBlock={onUsersBlock}
-                        onUsersUnblock={onUsersUnblock}
-                        onUsersDelete={onUsersDelete}
+                        users={props.users}
+                        usersCount={props.usersCount}
+                        setSelected={setSelected}
+                        setPage={setPage}
                     />
+
                     <Table className={classes.table}>
                         <TableHeadUsers
                             numSelected={selected.length}
-                            rowCount={users.length}
-                            onSelectAllClick={handleSelectAllClick}
+                            users={props.users}
+                            rowCount={props.users.length}
+                            setSelected={setSelected}
                         />
+
                         <TableBodyUsers
-                            users={users}
+                            selected={selected}
+                            users={props.users}
                             page={page}
-                            isSelected={isSelected}
-                            handleClick={handleClick}
+                            setSelected={setSelected}
                         />
                     </Table>
                 </TableContainer>
+
                 <TablePagination
                     component='div'
                     count={props.usersCount}
@@ -163,15 +88,13 @@ const Admin = (props) => {
                 />
             </Paper>
 
-            <Snackbar
-                open={props.isError}
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                onClose={props.toggleError}
-            >
-                <Alert severity='error' onClose={props.toggleError}>
-                    {translate('admin.error204')}
-                </Alert>
-            </Snackbar>
+            {/* <InfoAlert
+                open={!!props.statusCode}
+                message={translate('admin.error204')}
+                message={translate(`admin.message${props.statusCode}`)}
+                severity={props.statusCode === 200 ? 'success' : 'error'}
+                onClose={props.toggleStatus}
+            /> */}
         </Container>
     )
 }
@@ -179,19 +102,10 @@ const Admin = (props) => {
 const mapStateToProps = (state) => ({
     users: state.admin.users,
     usersCount: state.admin.usersCount,
-    isError: state.admin.isError,
+    statusCode: state.admin.statusCode,
 })
 
 export default compose(
-    connect(mapStateToProps, {
-        getUsersCount,
-        getUsers,
-        setAdmins,
-        deleteAdmins,
-        blockUsers,
-        unblockUsers,
-        deleteUsers,
-        toggleError,
-    }),
+    connect(mapStateToProps, { getUsersCount, getUsers, toggleStatus }),
     withAdminRedirect
 )(Admin)
