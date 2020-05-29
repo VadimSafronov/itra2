@@ -43,10 +43,10 @@ const Login = (props) => {
   return (
     <div className={classes.root}>
       <div className={classes.loginContainer}>
-      <div className={classes.socialGroup}>
+      {/* <div className={classes.socialGroup}>
           <GoogleAuth />
           <FacebookAuth />
-        </div>
+        </div> */}
       
         <SignIn onSubmit={props.login} />
        
