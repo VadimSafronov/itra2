@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const db = require('../models')
 const JWT = require('jsonwebtoken')
-const { SECRET } = require('../config/jwt-secret')
+const { SECRET } = require('../config/jwt-secret.json')
 
 const response = (statusCode, data = null) => ({
     statusCode: statusCode,
