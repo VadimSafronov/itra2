@@ -46,7 +46,7 @@ const TableBodyComponent = (props) => {
                             {user.id}
                         </TableCell>
 
-                        <TableCell align='right'>{user.login}</TableCell>
+                        <TableCell align='right'>{user.name}</TableCell>
                         <TableCell align='right'>{user.isBlocked ? 'true' : 'false'}</TableCell>
                         <TableCell align='right'>{user.isAdmin ? 'true' : 'false'}</TableCell>
 
