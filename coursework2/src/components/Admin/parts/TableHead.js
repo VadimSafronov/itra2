@@ -1,5 +1,5 @@
 import React from 'react'
-import translate from '../../localizations/translate'
+import translate from '../../../localizations/translate'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
