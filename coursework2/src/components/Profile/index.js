@@ -6,9 +6,9 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withLogoutRedirect } from '../../hoc/withAuthRedirect'
 
-import BonusList from './BonusList'
-import CompanyList from './CompanyList'
-import InformationBlock from './InformationBlock'
+import BonusList from './parts/BonusList'
+import CompanyList from './parts/CompanyList'
+import InformationBlock from './parts/InformationBlock'
 
 const useStyles = makeStyles((theme) => ({
     root: {
