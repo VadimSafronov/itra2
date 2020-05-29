@@ -21,6 +21,8 @@ import Snackbar from '@material-ui/core/Snackbar'
 import { ErrorAlert } from '../../validation/ErrorAlert'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
+import GoogleAuth from "./GoogleAuth";
+import FacebookAuth from './FacebookAuth'
 
 
 
@@ -43,6 +45,11 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  socialGroup: {
+    marginRight: 18,
+    display: "flex",
+    justifyContent: "space-between",
   },
 }));
 
@@ -67,6 +74,10 @@ const SignIn = (props) => {
         <Typography component="h1" variant="h5">
         {translate('sign.logo')}
         </Typography>
+        <div className={classes.socialGroup}>
+          <GoogleAuth />
+          <FacebookAuth />
+        </div>
         <form className={classes.form} noValidate>
           <Field
             variant="outlined"

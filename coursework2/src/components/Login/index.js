@@ -11,7 +11,7 @@ import FacebookAuth from './FacebookAuth'
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "calc(100vh - 64px)",
-    minHeight: 390,
+    minHeight: 305,
     marginTop: 64,
     display: "flex",
     alignItems: "center",
@@ -30,12 +30,12 @@ const useStyles = makeStyles((theme) => ({
       padding: "0 30px",
     },
   },
-  socialGroup: {
-    marginBottom: 31,
-    display: "flex",
-    justifyContent: "space-between",
-  },
-}));
+//   socialGroup: {
+//     marginBottom: 5,
+//     display: "flex",
+//     justifyContent: "space-between",
+//   },
+ }));
 
 const Login = (props) => {
   const classes = useStyles();
@@ -43,10 +43,10 @@ const Login = (props) => {
   return (
     <div className={classes.root}>
       <div className={classes.loginContainer}>
-        <div className={classes.socialGroup}>
+        {/* <div className={classes.socialGroup}>
           <GoogleAuth />
           <FacebookAuth />
-        </div>
+        </div> */}
         <SignIn onSubmit={props.login} />
       </div>
     </div>
