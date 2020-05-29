@@ -1,4 +1,4 @@
-odule.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
     const Company = sequelize.define('company', {
         title: {
             type: DataTypes.STRING,
