@@ -64,33 +64,7 @@ const SignUp = (props) => {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <Field
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                component={renderField}
-                id="firstName"
-                validate={[required, maxLength20]}
-                label={translate('signup.name')}
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Field
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                component={renderField}
-                label={translate('signup.surname')}
-                name="lastName"
-                validate={[required, maxLength20]}
-                autoComplete="lname"
-              />
-            </Grid>
+            
             <Grid item xs={12}>
               <Field
                 variant="outlined"
