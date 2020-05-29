@@ -1,7 +1,7 @@
 const router = require('express').Router()
- const db = require('../models')
- const JWT = require('jsonwebtoken')
- const { SECRET } = require('../config/jwt-secret')
+const db = require('../models')
+const JWT = require('jsonwebtoken')
+const { SECRET } = require('../config/jwt-secret')
 
 const response = (statusCode, data = null) => ({
     statusCode: statusCode,
@@ -27,12 +27,12 @@ router.post('/login', (req, res) => {
     const error = checkRequestValues(req.body.login, req.body.password)
     if (error) return res.send(error)
 
-    db.Users.findOne({
+    db.users.findOne({
         where: {
             login: req.body.login,
             password: req.body.password,
         },
-        attributes: ['id', 'name', 'isBlocked', 'isAdmin'],
+        attributes: ['id', 'isBlocked', 'isAdmin'],
     }).then((user) => {
         if (user === null) {
             return res.send(response(204))
@@ -43,7 +43,7 @@ router.post('/login', (req, res) => {
         }
 
         createJWTCookie(req, user.id)
-        res.send(response(200, { id: user.id, name: user.name, isAdmin: user.isAdmin }))
+        res.send(response(200, user))
     })
 })
 
@@ -51,7 +51,7 @@ router.post('/registration', (req, res) => {
     const error = checkRequestValues(req.body.login, req.body.password)
     if (error) return res.send(error)
 
-    db.Users.findOrCreate({
+    db.users.findOrCreate({
         where: {
             login: req.body.login,
         },
@@ -61,15 +61,18 @@ router.post('/registration', (req, res) => {
             socialId: null,
             isBlocked: false,
             isAdmin: false,
-            name: req.body.login,
+            name: 'anonymous',
+            surname: 'anonymous',
+            country: 'Belarus',
+            city: 'Minsk',
         },
-    }).then(([{ id, name, isAdmin }, created]) => {
+    }).then(([{ id }, created]) => {
         if (created === false) {
             return res.send(response(204))
         }
 
         createJWTCookie(req, id)
-        res.send(response(200, { id, name, isAdmin }))
+        res.send(response(200, { id }))
     })
 })
 
@@ -77,7 +80,7 @@ router.post('/socialLogin', (req, res) => {
     const error = checkRequestValues(req.body.socialId, req.body.name, 40)
     if (error) return res.send(error)
 
-    db.Users.findOrCreate({
+    db.users.findOrCreate({
         where: {
             socialId: req.body.socialId,
         },
@@ -88,14 +91,17 @@ router.post('/socialLogin', (req, res) => {
             isBlocked: false,
             isAdmin: false,
             name: req.body.name,
+            surname: 'surname',
+            country: 'Belarus',
+            city: 'Minsk',
         },
-    }).then(([{ id, name, isBlocked, isAdmin }, created]) => {
+    }).then(([{ id, isBlocked, isAdmin }, created]) => {
         if (isBlocked === true) {
             return res.send(response(403))
         }
 
         createJWTCookie(req, id)
-        res.send(response(200, { id, name, isAdmin }))
+        res.send(response(200, { id, isAdmin }))
     })
 })
 
@@ -107,7 +113,7 @@ router.post('/me', (req, res) => {
             return res.send(response(401))
         }
 
-        db.Users.findByPk(decoded.id)
+        db.users.findByPk(decoded.id)
             .then(({ id, isBlocked, isAdmin }) => {
                 if (id === null || isBlocked === true) {
                     return res.send(response(403))
