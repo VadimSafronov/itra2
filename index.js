@@ -19,7 +19,7 @@ app.use(
 );
 app.use('/api/profile', profileRouter)
 app.use("/api/auth", authRoute);
-app.use('/api/adminRouter', adminRouter)
+app.use('/api/admin', adminRouter)
 app.use(express.static(path.join(__dirname, "coursework2", "build")));
 
 app.get("*", (req, res) => {
