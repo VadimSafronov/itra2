@@ -8,12 +8,12 @@ import { withAdminRedirect } from '../../hoc/withAdminRedirect'
 import { Container } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'
 import TableContainer from '@material-ui/core/TableContainer'
-import TableToolbarUsers from './parts/TableToolbar'
+import TableToolbarUsers from './parts/TableToolBar'
 import Table from '@material-ui/core/Table'
 import TableHeadUsers from './parts/TableHead'
 import TableBodyUsers from './parts/TableBody'
 import TablePagination from '@material-ui/core/TablePagination'
-//import { InfoAlert } from '../common/InfoAlert'
+import { InfoAlert } from '../validation/InfoAlert'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -88,13 +88,13 @@ const Admin = (props) => {
                 />
             </Paper>
 
-            {/* <InfoAlert
+            <InfoAlert
                 open={!!props.statusCode}
                 message={translate('admin.error204')}
                 message={translate(`admin.message${props.statusCode}`)}
                 severity={props.statusCode === 200 ? 'success' : 'error'}
                 onClose={props.toggleStatus}
-            /> */}
+            />
         </Container>
     )
 }
