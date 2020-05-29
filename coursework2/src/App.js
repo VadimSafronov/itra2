@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import Profile from "./components/Profile";
-import Admin from './components/Admin'
+import Admin from './components/Admin';
 
 import { initializeApp } from "./Redux/appReducer";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -37,10 +37,10 @@ const App = (props) => {
       <GlobalStyles />
       <IntlProvider locale={locale} messages={localeMessages[locale]}>
         <CssBaseline />
-        {/* {!props.initialized ? (
+        {!props.initialized ? (
           <LinearProgress />
         ) : (
-          <> */}
+          <>
             <Header />
             <Switch>
               <Route path="/login" exact component={Login} />
@@ -48,8 +48,8 @@ const App = (props) => {
               <Route path="/profile/:userId?" exact component={Profile} />
               <Route path='/admin' exact component={Admin} />
             </Switch>
-          {/* </>
-        )} */}
+          </>
+        )}
       </IntlProvider>
     </ThemeProvider>
   );
