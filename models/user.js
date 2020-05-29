@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Users = sequelize.define('Users', {
+    const Users = sequelize.define('users', {
         login: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -24,10 +24,24 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        // surname: {
-        //     type: DataTypes.STRING,
-        //     allowNull: true,
-        // },
+        surname: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        country: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        city: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
     })
+
+    Users.associate = (models) => {
+        Users.hasMany(models.company)
+        Users.belongsToMany(models.bonuses, { through: 'userBonuses', timestamps: false })
+    }
+
     return Users
 }
