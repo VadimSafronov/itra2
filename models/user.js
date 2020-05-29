@@ -38,10 +38,10 @@ module.exports = (sequelize, DataTypes) => {
         },
     })
 
-    Users.associate = (models) => {
-        Users.hasMany(models.company)
-        Users.belongsToMany(models.bonuses, { through: 'userBonuses', timestamps: false })
-    }
+    // Users.associate = (models) => {
+    //     Users.hasMany(models.company)
+    //     Users.belongsToMany(models.bonuses, { through: 'userBonuses', timestamps: false })
+    // }
 
     return Users
 }
