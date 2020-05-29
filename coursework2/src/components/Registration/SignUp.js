@@ -15,10 +15,11 @@ import { required, maxLengthCreator } from '../../validation/validator'
 import { renderField } from '../../validation/Fields'
 import translate from '../../localizations/translate'
 import MuiAlert from '@material-ui/lab/Alert'
-import { ErrorAlert } from '../../validation/ErrorAlert'
 import Snackbar from '@material-ui/core/Snackbar'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
+import { InfoAlert } from '../validation/InfoAlert'
+import { toggleRegistrationStatus } from '../../Redux/authReducer'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const errorsCode = [500, 204]
 const maxLength20 = maxLengthCreator(20)
 
 function Alert(props) {
@@ -50,7 +50,7 @@ function Alert(props) {
 
 const SignUp = (props) => {
   const classes = useStyles()
-    const errorCode = errorsCode.find((error) => error === props.error)
+
 
   return (
     <Container onSubmit={props.handleSubmit} component="main" maxWidth="xs">
@@ -116,17 +116,22 @@ const SignUp = (props) => {
         
       </Box>
       
-
-        {errorCode && <ErrorAlert error={'signup.error' + errorCode} />}
+      <InfoAlert
+                open={!!props.statusCode}
+                message={translate(`registration.message${props.statusCode}`)}
+                severity={props.statusCode === 200 ? 'success' : 'error'}
+                onClose={props.toggleRegistrationStatus}
+            />
     </Container>
   );
 }
 const mapStateToProps = (state) => ({
   isFetching: state.auth.isFetching,
+  statusCode: state.auth.registrationStatusCode,
 })
 
 
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, { toggleRegistrationStatus }),
   reduxForm({ form: 'registration' })
 )(SignUp)

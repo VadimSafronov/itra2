@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import { registration } from '../../Redux/authReducer'
 import { withLoginRedirect } from '../../hoc/withAuthRedirect'
 import { compose } from 'redux'
-import Typography from '@material-ui/core/Typography';
-import translate from '../../localizations/translate'
 import SignUp from './SignUp'
 
 
