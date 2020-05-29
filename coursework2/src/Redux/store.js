@@ -8,6 +8,7 @@ import { localeReducer } from './localeReducer'
 import { authReducer } from './authReducer'
 import { adminReducer } from './adminReducer'
 import { appReducer } from './appReducer'
+import { profileReducer } from './profileReducer'
 
 
 const reducers = combineReducers({
@@ -17,6 +18,7 @@ const reducers = combineReducers({
     admin: adminReducer,
     auth: authReducer,
     app: appReducer,
+    profile: profileReducer,
     
 })
 
