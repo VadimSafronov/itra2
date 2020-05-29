@@ -5,9 +5,6 @@ import { connect } from "react-redux";
 import { login } from "../../Redux/authReducer";
 import { withLoginRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
-import GoogleAuth from "./GoogleAuth";
-import FacebookAuth from "./FacebookAuth";
-import { Container } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,11 +28,6 @@ const useStyles = makeStyles((theme) => ({
       padding: "0 30px",
     },
   },
-  socialGroup: {
-    marginRight: 18,
-    display: "flex",
-    // justifyContent: "space-between",
-  },
 }));
 
 const Login = (props) => {
@@ -46,10 +38,7 @@ const Login = (props) => {
       <div className={classes.loginContainer}>
       
         <SignIn onSubmit={props.login} />
-        <Container className={classes.socialGroup} component="main">
-          <GoogleAuth />
-          <FacebookAuth />
-        </Container>
+       
       </div>
       
     </div>
