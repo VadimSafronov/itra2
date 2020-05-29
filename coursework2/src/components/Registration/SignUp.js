@@ -18,7 +18,7 @@ import MuiAlert from '@material-ui/lab/Alert'
 import Snackbar from '@material-ui/core/Snackbar'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { InfoAlert } from '../validation/InfoAlert'
+import { InfoAlert } from '../../validation/InfoAlert'
 import { toggleRegistrationStatus } from '../../Redux/authReducer'
 
 
