@@ -3,9 +3,9 @@ const app = express();
 const path = require("path");
 const db = require("./models");
 const session = require("express-session");
-const authRoute = require("./routes/auth");
-const adminRouter = require('./routes/adminRouter')
-const profileRouter = require("./routes/profileRouter");
+const authRoute = require("./Routes/auth");
+const adminRouter = require('./Routes/adminRouter')
+const profileRouter = require("./Routes/profileRouter");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
