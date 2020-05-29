@@ -13,7 +13,7 @@ import Table from '@material-ui/core/Table'
 import TableHeadUsers from './parts/TableHead'
 import TableBodyUsers from './parts/TableBody'
 import TablePagination from '@material-ui/core/TablePagination'
-import { InfoAlert } from '../validation/InfoAlert'
+import { InfoAlert } from '../../validation/InfoAlert'
 
 const useStyles = makeStyles((theme) => ({
     root: {
