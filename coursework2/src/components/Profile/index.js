@@ -4,7 +4,7 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withLogoutRedirect } from '../../hoc/withAuthRedirect'
 import { Container } from '@material-ui/core'
-import BonusList from './parts/BonusList'
+import BonusList from './parts/BonusList.js'
 import CompanyList from './parts/CompanyList'
 import InformationBlock from './parts/InformationBlock'
 
