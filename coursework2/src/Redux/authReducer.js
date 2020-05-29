@@ -6,7 +6,6 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 const initialState = {
     userId: null,
-    name: null,
     isAuth: false,
     isAdmin: false,
     isFetching: false,
@@ -29,9 +28,9 @@ export const authReducer = (state = initialState, action) => {
     }
 }
 
-const setUserData = (userId, name, isAuth, isAdmin) => ({
+const setUserData = (userId, isAuth, isAdmin) => ({
     type: SET_USER_DATA,
-    payload: { userId, name, isAuth, isAdmin },
+    payload: { userId, isAuth, isAdmin },
 })
 
 const toggleIsFetching = (isFetching) => ({
@@ -39,7 +38,7 @@ const toggleIsFetching = (isFetching) => ({
     isFetching,
 })
 
-export const login = ({ login, password }) => (dispatch) => {
+export const login = ({ login, password }) => async (dispatch) => {
     dispatch(toggleIsFetching(true))
     authAPI
         .login(login, password)
@@ -47,8 +46,8 @@ export const login = ({ login, password }) => (dispatch) => {
             dispatch(toggleIsFetching(false))
             switch (response.data.statusCode) {
                 case 200:
-                    let { id, name, isAdmin } = response.data.data
-                    dispatch(setUserData(id, name, true, isAdmin))
+                    let { id, isAdmin } = response.data.data
+                    dispatch(setUserData(id, true, isAdmin))
                     break
                 case 204:
                     dispatch(stopSubmit('login', { _error: 204 }))
@@ -65,7 +64,7 @@ export const login = ({ login, password }) => (dispatch) => {
         })
 }
 
-export const registration = ({ login, password }) => (dispatch) => {
+export const registration = ({ login, password }) => async (dispatch) => {
     dispatch(toggleIsFetching(true))
     authAPI
         .registration(login, password)
@@ -73,8 +72,8 @@ export const registration = ({ login, password }) => (dispatch) => {
             dispatch(toggleIsFetching(false))
             switch (response.data.statusCode) {
                 case 200:
-                    let { id, name, isAdmin } = response.data.data
-                    dispatch(setUserData(id, name, true, isAdmin))
+                    let { id } = response.data.data
+                    dispatch(setUserData(id, true, false))
                     break
                 case 204:
                     dispatch(stopSubmit('registration', { _error: 204 }))
@@ -84,20 +83,19 @@ export const registration = ({ login, password }) => (dispatch) => {
             }
         })
         .catch((error) => {
-            dispatch(stopSubmit('registration', { _error: 500 }))
+            dispatch(stopSubmit('login', { _error: 500 }))
         })
 }
 
-export const socialLogin = (socialId, name) => (dispatch) => {
-    dispatch(toggleIsFetching(true))
+export const socialLogin = (socialId, name) => async (dispatch) => {
     authAPI
         .socialLogin(socialId, name)
         .then((response) => {
             dispatch(toggleIsFetching(false))
             switch (response.data.statusCode) {
                 case 200:
-                    let { id, name, isAdmin } = response.data.data
-                    dispatch(setUserData(id, name, true, isAdmin))
+                    let { id, isAdmin } = response.data.data
+                    dispatch(setUserData(id, true, isAdmin))
                     break
                 case 403:
                     dispatch(stopSubmit('login', { _error: 403 }))
@@ -111,20 +109,21 @@ export const socialLogin = (socialId, name) => (dispatch) => {
         })
 }
 
-export const getAuthUserData = () => (dispatch) => {
-    return authAPI.me().then((response) => {
-        if (response.data.statusCode === 200) {
-            let { id, name, isAdmin } = response.data.data
-            dispatch(setUserData(id, name, true, isAdmin))
-        }
-    })
+export const getAuthUserData = () => async (dispatch) => {
+    const response = await authAPI.me()
+
+    if (response.data.statusCode === 200) {
+        let { id, isAdmin } = response.data.data
+        dispatch(setUserData(id, true, isAdmin))
+    }
+
+    return response
 }
 
-export const logout = () => (dispatch) => {
-    authAPI
-        .logout()
-        .then((response) => {
-            dispatch(setUserData(null, null, false))
-        })
-        .catch((error) => console.log(error))
+export const logout = () => async (dispatch) => {
+    const response = await authAPI.logout()
+
+    if (response.data.statusCode === 200) {
+        dispatch(setUserData(null, false, false))
+    }
 }
