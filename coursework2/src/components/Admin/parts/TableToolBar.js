@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: theme.spacing(1),
     },
     highlight: {
-        backgroundColor: theme.palette.primary.light,
+        backgroundColor: theme.palette.secondary.light,
     },
     title: {
         flexGrow: 1,
