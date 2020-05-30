@@ -7,6 +7,7 @@ import Registration from "./components/Registration";
 import Profile from "./components/Profile";
 import Admin from './components/Admin';
 import Company from './components/Company'
+import CreateCompany from './components/CreateCompany'
 
 import { initializeApp } from "./Redux/appReducer";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -48,6 +49,7 @@ const App = (props) => {
               <Route path="/registration" exact component={Registration} />
               <Route path="/profile/:userId?" exact component={Profile} />
               <Route path='/company/:companyId' exact component={Company} />
+              <Route path='/company/create' exact component={CreateCompany} />
               <Route path='/admin' exact component={Admin} />
             </Switch>
           </>
