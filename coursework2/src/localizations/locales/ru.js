@@ -52,6 +52,45 @@ const messages =
     'profile.informationBlock.surname': 'Фамилия:',
     'profile.informationBlock.country': 'Страна:',
     'profile.informationBlock.city': 'Город:',
+
+    'profile.editMode': 'Режим редактирования',
+
+    'company.companyTerm': 'Срок — ',
+    'company.bonusList.tableTitle': 'Бонусы',
+    'company.bonusList.bonusTitle': 'Название',
+    'company.bonusList.bonusAmount': 'Сумма',
+    'company.bonusList.bonusDescription': 'Описание',
+    'company.bonusList.bonusPayment': 'Оплата',
+    'company.bonusList.supportButton': 'Купить',
+    'company.companyDescription': 'Описание',
+    'company.companyProgress': 'Прогресс',
+
+    'company.editMode': 'Режим редактирования',
+
+    'home.homeTitle': 'Последние обновленные компании',
+    'home.updatedAt': 'Обновлено: ',
+    'home.view': 'Смотреть',
+
+    'companyCreate.title': 'Создание компании',
+    'companyCreate.inputTitle': 'Название',
+    'companyCreate.inputDescription': 'Описание',
+    'companyCreate.inputVideoId': 'Код видео',
+    'companyCreate.inputTargetAmount': 'Целевая сумма',
+    'companyCreate.inputDate': 'Дата',
+    'companyCreate.create': 'Создать',
+    'companyCreate.message0': ' ',
+    'companyCreate.message200': 'Компания создана',
+    'companyCreate.message204': 'Не удалось создать компанию',
+
+    'bonusCreate.title': 'Создание бонуса',
+    'bonusCreate.selectCompany': 'Выберите компанию',
+    'bonusCreate.inputTitle': 'Название',
+    'bonusCreate.inputAmount': 'Цена',
+    'bonusCreate.inputDescription': 'Описание',
+    'bonusCreate.create': 'Создать',
+    'bonusCreate.message0': ' ',
+    'bonusCreate.message200': 'Бонус создан',
+    'bonusCreate.message204': 'Не удалось создать бонус',
     
     
 
