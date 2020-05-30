@@ -6,8 +6,8 @@ const session = require("express-session");
 const authRoute = require("./Routes/auth");
 const adminRouter = require('./Routes/adminRouter')
 const profileRouter = require("./Routes/profileRouter");
-const companyRouter = require('./routes/companyRouter');
-const bonusRouter = require('./routes/bonusRouter');
+const companyRouter = require('./Routes/companyRouter');
+const bonusRouter = require('./Routes/bonusRouter');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
