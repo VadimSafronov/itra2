@@ -6,6 +6,8 @@ const session = require("express-session");
 const authRoute = require("./Routes/auth");
 const adminRouter = require('./Routes/adminRouter')
 const profileRouter = require("./Routes/profileRouter");
+const companyRouter = require('./routes/companyRouter');
+const bonusRouter = require('./routes/bonusRouter');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -20,6 +22,8 @@ app.use(
 app.use('/api/profile', profileRouter)
 app.use("/api/auth", authRoute);
 app.use('/api/admin', adminRouter)
+app.use('/api/company', companyRouter)
+app.use('/api/bonus', bonusRouter)
 app.use(express.static(path.join(__dirname, "coursework2", "build")));
 
 app.get("*", (req, res) => {
