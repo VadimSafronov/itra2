@@ -1,25 +1,13 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Redirect } from 'react-router-dom'
-import { Container } from '@material-ui/core'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withLogoutRedirect } from '../../hoc/withAuthRedirect'
-
+import { Container } from '@material-ui/core'
 import EditMode from './parts/EditMode'
 import BonusList from './parts/BonusList'
 import CompanyList from './parts/CompanyList'
 import InformationBlock from './parts/InformationBlock'
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        marginTop: 64,
-        paddingTop: 40,
-        [theme.breakpoints.down('sm')]: {
-            marginTop: 113,
-        },
-    },
-}))
 
 const useStyles = makeStyles((theme) => ({
     root: {
