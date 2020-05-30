@@ -10,6 +10,7 @@ import { adminReducer } from './adminReducer'
 import { appReducer } from './appReducer'
 import { companyReducer } from './companyReducer'
 import { profileReducer } from './profileReducer'
+import { bonusReducer } from './bonusReducer'
 
 
 const reducers = combineReducers({
@@ -21,6 +22,7 @@ const reducers = combineReducers({
     app: appReducer,
     company: companyReducer,
     profile: profileReducer,
+    bonus: bonusReducer,
     
 })
 
