@@ -20,6 +20,7 @@ app.use(
     cookie: { secure: false },
   })
 );
+
 app.use('/api/auth', authRoute)
 app.use('/api/admin', adminRouter)
 app.use('/api/profile', profileRouter)
