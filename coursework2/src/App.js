@@ -53,7 +53,7 @@ const App = (props) => {
               <Route path="/login" exact component={Login} />
               <Route path="/registration" exact component={Registration} />
               <Route path="/profile/:userId?" exact component={Profile} />
-              <Route path='/company/:companyId' exact component={Company} />
+              {/* <Route path='/company/:companyId' exact component={Company} /> */}
               <Route path='/bonus/create' exact component={CreateBonus} />
               <Route path='/company/create' exact component={CreateCompany} />
               <Route path='/admin' exact component={Admin} />
