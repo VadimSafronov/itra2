@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import translate from '../../localizations/translate'
 import { Field, reduxForm } from 'redux-form'
-import { renderField } from '../../validation/Fields'
+import { renderField } from '../common/Fields'
 import Button from '@material-ui/core/Button'
 import { required, maxLengthCreator } from '../../validation/validator'
 import MenuItem from '@material-ui/core/MenuItem'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { InfoAlert } from '../../validation/InfoAlert'
-import { renderSelectField } from '../../validation/Fields'
+import { renderSelectField } from '../..validation/Fields'
 import { toggleStatus } from '../../Redux/bonusReducer'
 
 const useStyles = makeStyles((theme) => ({
@@ -27,65 +27,49 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const maxLength20 = maxLengthCreator(20)
-const maxLength60 = maxLengthCreator(60)
-const maxLength3000 = maxLengthCreator(3000)
+const maxLength40 = maxLengthCreator(40)
 
-const CreateCompanyForm = (props) => {
+const CreateBonusForm = (props) => {
     const classes = useStyles()
-    const date = new Date().toISOString()
-
-    useEffect(() => {
-        props.initialize({
-            userId: props.userId,
-            expirationDate: date.slice(0, 10),
-        })
-    }, [])
 
     return (
         <form onSubmit={props.handleSubmit} className={classes.createForm}>
-            <Field name='userId' component='input' type='hidden' />
+            <Field
+                name='companyId'
+                component={renderSelectField}
+                label={translate('bonusCreate.selectCompany')}
+                validate={[required]}
+            >
+                {props.companiesId.map((option) => (
+                    <MenuItem key={option.id} value={option.id}>
+                        {option.title}
+                    </MenuItem>
+                ))}
+            </Field>
 
             <Field
                 name='title'
                 autoComplete='off'
                 component={renderField}
-                label={translate('companyCreate.inputTitle')}
-                validate={[required, maxLength60]}
+                label={translate('bonusCreate.inputTitle')}
+                validate={[required, maxLength20]}
+            />
+
+            <Field
+                name='amount'
+                type='number'
+                autoComplete='off'
+                component={renderField}
+                label={translate('bonusCreate.inputAmount')}
+                validate={[required, maxLength20]}
             />
 
             <Field
                 name='description'
                 autoComplete='off'
                 component={renderField}
-                label={translate('companyCreate.inputDescription')}
-                multiline
-                validate={[required, maxLength3000]}
-            />
-
-            <Field
-                name='videoLink'
-                autoComplete='off'
-                component={renderField}
-                label={translate('companyCreate.inputVideoId')}
-                validate={[required, maxLength20]}
-            />
-
-            <Field
-                name='targetAmount'
-                type='number'
-                autoComplete='off'
-                component={renderField}
-                label={translate('companyCreate.inputTargetAmount')}
-                validate={[required, maxLength20]}
-            />
-
-            <Field
-                name='expirationDate'
-                type='date'
-                autoComplete='off'
-                component={renderField}
-                label={translate('companyCreate.inputDate')}
-                validate={[required]}
+                label={translate('bonusCreate.inputDescription')}
+                validate={[required, maxLength40]}
             />
 
             <Button
@@ -95,12 +79,12 @@ const CreateCompanyForm = (props) => {
                 size='large'
                 disabled={props.isFetching}
             >
-                {translate('companyCreate.create')}
+                {translate('bonusCreate.create')}
             </Button>
 
             <InfoAlert
                 open={!!props.statusCode}
-                message={translate(`companyCreate.message${props.statusCode}`)}
+                message={translate(`bonusCreate.message${props.statusCode}`)}
                 severity={props.statusCode === 200 ? 'success' : 'error'}
                 onClose={props.toggleStatus}
             />
@@ -109,12 +93,12 @@ const CreateCompanyForm = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    userId: state.auth.userId,
-    isFetching: state.company.isFetching,
-    statusCode: state.company.statusCode,
+    companiesId: state.bonus.companiesId,
+    isFetching: state.bonus.isFetching,
+    statusCode: state.bonus.statusCode,
 })
 
 export default compose(
     connect(mapStateToProps, { toggleStatus }),
-    reduxForm({ form: 'company' })
-)(CreateCompanyForm)
+    reduxForm({ form: 'bonus' })
+)(CreateBonusForm)
