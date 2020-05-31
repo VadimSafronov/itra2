@@ -12,6 +12,8 @@ import { companyReducer } from './companyReducer'
 import { profileReducer } from './profileReducer'
 import { bonusReducer } from './bonusReducer'
 import { homeReducer } from './homeReducer'
+import { createCompanyReducer } from './createCompanyReducer'
+import { createBonusReducer } from './createBonusReducer'
 
 
 const reducers = combineReducers({
@@ -25,6 +27,8 @@ const reducers = combineReducers({
     profile: profileReducer,
     home: homeReducer,
     bonus: bonusReducer,
+    createCompany: createCompanyReducer,
+    createBonus: createBonusReducer,
     
 })
 

@@ -1,14 +1,14 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { createCompany } from '../../Redux/createCompanyReducer'
+import { withLogoutRedirect } from '../../hoc/withAuthRedirect'
+import translate from '../../localizations/translate'
 import { Container } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'
-import translate from '../../localizations/translate'
-import CreateCompanyForm from './CreateCompanyForm'
-import { connect } from 'react-redux'
-import { createCompany } from '../../Redux/companyReducer'
 import Typography from '@material-ui/core/Typography'
-import { withLogoutRedirect } from '../../hoc/withAuthRedirect'
-import { compose } from 'redux'
+import CreateCompanyForm from './CreateCompanyForm'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,7 +35,7 @@ const CreateCompany = (props) => {
                 <Typography variant='h5' component='h1' className={classes.createTitle}>
                     {translate('companyCreate.title')}
                 </Typography>
-                <CreateCompanyForm onSubmit={props.createCompany} userId={props.userId} />
+                <CreateCompanyForm onSubmit={props.createCompany} />
             </Paper>
         </Container>
     )

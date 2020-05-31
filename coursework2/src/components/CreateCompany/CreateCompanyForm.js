@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import translate from '../../localizations/translate'
-import { Field, reduxForm } from 'redux-form'
-import { renderField } from '../../validation/Fields'
-import Button from '@material-ui/core/Button'
-import { required, maxLengthCreator } from '../../validation/validator'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
+import { Field, FieldArray, reduxForm } from 'redux-form'
+import { uploadImage, nullifyStatus } from '../../Redux/createCompanyReducer'
+import { arrayPush } from 'redux-form'
+import translate from '../../localizations/translate'
+import { renderField } from '../../validation/Fields'
+import { useDropzone } from 'react-dropzone'
+import Button from '@material-ui/core/Button'
+import { required, maxLengthCreator } from '../../validation/validator'
 import { InfoAlert } from '../../validation/InfoAlert'
-import { toggleStatus } from '../../Redux/companyReducer'
 
 const useStyles = makeStyles((theme) => ({
     createForm: {
@@ -20,6 +22,41 @@ const useStyles = makeStyles((theme) => ({
         '& > *:last-child': {
             marginTop: 5,
             marginBottom: 0,
+        },
+    },
+    dragZone: {
+        height: 200,
+        padding: 20,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        fontSize: 18,
+        border: '1px dashed',
+        borderColor: theme.palette.primary.main,
+    },
+    dropZone: {
+        height: 200,
+        padding: 20,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        fontSize: 18,
+        border: '1px dashed',
+        borderColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.type === 'light' ? '#F0F2F5' : '#202124',
+    },
+    companyImages: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+    },
+    companyImage: {
+        width: '49.9%',
+        marginTop: 1,
+        [theme.breakpoints.down('xs')]: {
+            width: '100%',
         },
     },
 }))
@@ -39,9 +76,19 @@ const CreateCompanyForm = (props) => {
         })
     }, [])
 
+    const onDrop = useCallback((acceptedFiles) => {
+        acceptedFiles.forEach(async (image) => {
+            const url = await props.uploadImage(image)
+            props.dispatch(arrayPush('createCompany', 'images', url))
+        })
+    }, [])
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+
     return (
         <form onSubmit={props.handleSubmit} className={classes.createForm}>
             <Field name='userId' component='input' type='hidden' />
+            <FieldArray name='images' component='input' type='hidden' />
 
             <Field
                 name='title'
@@ -86,6 +133,21 @@ const CreateCompanyForm = (props) => {
                 validate={[required]}
             />
 
+            <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                {isDragActive ? (
+                    <div className={classes.dropZone}>{translate('companyCreate.dropzone')}</div>
+                ) : (
+                    <div className={classes.dragZone}>{translate('companyCreate.dragzone')}</div>
+                )}
+            </div>
+
+            <div className={classes.companyImages}>
+                {props.images.map((image, index) => (
+                    <img src={image} alt='' key={index} className={classes.companyImage} />
+                ))}
+            </div>
+
             <Button
                 type='submit'
                 variant='contained'
@@ -100,7 +162,7 @@ const CreateCompanyForm = (props) => {
                 open={!!props.statusCode}
                 message={translate(`companyCreate.message${props.statusCode}`)}
                 severity={props.statusCode === 200 ? 'success' : 'error'}
-                onClose={props.toggleStatus}
+                onClose={props.nullifyStatus}
             />
         </form>
     )
@@ -108,11 +170,12 @@ const CreateCompanyForm = (props) => {
 
 const mapStateToProps = (state) => ({
     userId: state.auth.userId,
-    isFetching: state.company.isFetching,
-    statusCode: state.company.statusCode,
+    images: state.createCompany.images,
+    isFetching: state.createCompany.isFetching,
+    statusCode: state.createCompany.statusCode,
 })
 
 export default compose(
-    connect(mapStateToProps, { toggleStatus }),
-    reduxForm({ form: 'company' })
+    connect(mapStateToProps, { uploadImage, nullifyStatus }),
+    reduxForm({ form: 'createCompany' })
 )(CreateCompanyForm)
