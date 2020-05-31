@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import "./App.css";
+
 import Header from "./components/Header/Header";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import Profile from "./components/Profile";
 import Admin from './components/Admin';
 import Company from './components/Company'
-import CreateCompany from './components/CreateCompany'
-import CreateBonus from './components/CreateBonus'
+import CreateCompany from './components/CreateCompany';
+import CreateBonus from './components/CreateBonus';
 
 import { initializeApp } from "./Redux/appReducer";
 import LinearProgress from "@material-ui/core/LinearProgress";
