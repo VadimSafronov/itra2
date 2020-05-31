@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { InfoAlert } from '../../validation/InfoAlert'
-import { renderSelectField } from '../..validation/Fields'
+import { renderSelectField } from '../../validation/Fields'
 import { toggleStatus } from '../../Redux/bonusReducer'
 
 const useStyles = makeStyles((theme) => ({
