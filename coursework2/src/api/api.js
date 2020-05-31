@@ -107,7 +107,7 @@ export const createCompanyAPI = {
     uploadImage(image) {
         const data = new FormData()
         data.append('file', image)
-        data.append('upload_preset', 'courseworkit') 
+        data.append('upload_preset', 's5f40our') 
 
         return axios.post('https://api.cloudinary.com/v1_1/dndyiifit/image/upload', data, {
             headers: {
