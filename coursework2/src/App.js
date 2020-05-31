@@ -10,6 +10,7 @@ import Admin from './components/Admin';
 import Company from './components/Company'
 import CreateCompany from './components/CreateCompany';
 import CreateBonus from './components/CreateBonus';
+import Home from './components/Home';
 
 import { initializeApp } from "./Redux/appReducer";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -22,6 +23,7 @@ import { darkTheme } from "./Themes/dark";
 import { lightTheme } from "./Themes/light";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Switch, Route } from "react-router-dom";
+
 
 
 const getTheme = (title) => {
@@ -47,6 +49,7 @@ const App = (props) => {
           <>
             <Header />
             <Switch>
+              <Route path='/' exact component={Home} />
               <Route path="/login" exact component={Login} />
               <Route path="/registration" exact component={Registration} />
               <Route path="/profile/:userId?" exact component={Profile} />
