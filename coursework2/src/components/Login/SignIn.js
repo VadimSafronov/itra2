@@ -21,8 +21,6 @@ import Snackbar from '@material-ui/core/Snackbar'
 import { ErrorAlert } from '../../validation/ErrorAlert'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-// import GoogleAuth from "./GoogleAuth";
-// import FacebookAuth from './FacebookAuth';
 
 
 
@@ -69,10 +67,6 @@ const SignIn = (props) => {
         <Typography component="h1" variant="h5">
         {translate('sign.logo')}
         </Typography>
-        {/* <div className={classes.socialGroup}>
-          <GoogleAuth />
-          <FacebookAuth />
-        </div> */}
         <form className={classes.form} noValidate>
           <Field
             variant="outlined"

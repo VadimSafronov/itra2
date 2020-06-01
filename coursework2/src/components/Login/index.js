@@ -7,6 +7,8 @@ import { withLoginRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
 import GoogleAuth from "./GoogleAuth";
 import FacebookAuth from './FacebookAuth';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +32,10 @@ const useStyles = makeStyles((theme) => ({
       padding: "0 30px",
     },
   },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
   socialGroup: {
     marginRight: 18,
     display: "flex",
@@ -43,6 +49,12 @@ const Login = (props) => {
   return (
     <div className={classes.root}>
       <div className={classes.loginContainer}>
+      <Typography component="h1" variant="h5">
+        {translate('sign.logo')}
+        </Typography>
+      <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
       <div className={classes.socialGroup}>
           <GoogleAuth />
           <FacebookAuth />
