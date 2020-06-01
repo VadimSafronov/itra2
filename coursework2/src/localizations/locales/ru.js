@@ -64,6 +64,10 @@ const messages =
     'company.bonusList.supportButton': 'Купить',
     'company.companyDescription': 'Описание',
     'company.companyProgress': 'Прогресс',
+    'company.back': 'Назад',
+    'company.next': 'Вперед',
+    'company.notFound': 'Компания не найдена',
+
     'admin.previousPage': 'Предыдущая страница',
     'admin.nextPage': 'Следующая страница',
     'admin.message0': ' ',
