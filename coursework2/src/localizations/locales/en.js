@@ -83,6 +83,8 @@ const messages =
     'companyCreate.message0': ' ',
     'companyCreate.message200': 'Company created',
     'companyCreate.message204': 'Failed to create a company',
+    'companyCreate.dropzone': 'Drop the images here ...',
+    'companyCreate.dragzone': "Drag 'n' drop some images here, or click to select images",
 
     'bonusCreate.title': 'Bonus creation',
     'bonusCreate.selectCompany': 'Select company',

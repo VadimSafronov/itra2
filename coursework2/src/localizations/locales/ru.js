@@ -89,6 +89,9 @@ const messages =
     'companyCreate.message0': ' ',
     'companyCreate.message200': 'Компания создана',
     'companyCreate.message204': 'Не удалось создать компанию',
+    'companyCreate.dropzone': 'Оставьте изображения здесь ...',
+    'companyCreate.dragzone':
+        'Перетащите сюда несколько картинок или нажмите, чтобы выбрать картинку',
 
     'bonusCreate.title': 'Создание бонуса',
     'bonusCreate.selectCompany': 'Выберите компанию',
