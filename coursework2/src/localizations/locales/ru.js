@@ -64,6 +64,10 @@ const messages =
     'company.bonusList.supportButton': 'Купить',
     'company.companyDescription': 'Описание',
     'company.companyProgress': 'Прогресс',
+    'admin.previousPage': 'Предыдущая страница',
+    'admin.nextPage': 'Следующая страница',
+    'admin.message0': ' ',
+    'admin.message204': 'Упс. Одна из записей не существует в базе данных',
 
     'company.editMode': 'Режим редактирования',
 

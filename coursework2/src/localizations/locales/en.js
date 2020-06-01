@@ -63,6 +63,9 @@ const messages =
     'company.bonusList.supportButton': 'Buy',
     'company.companyDescription': 'Description',
     'company.companyProgress': 'Progress',
+    'company.back': 'back',
+    'company.next': 'next',
+    'company.notFound': 'Company not found',
 
     'company.editMode': 'Edit mode',
 
