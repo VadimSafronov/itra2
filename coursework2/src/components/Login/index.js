@@ -8,9 +8,6 @@ import { compose } from "redux";
 import GoogleAuth from "./GoogleAuth";
 import FacebookAuth from './FacebookAuth';
 import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import translate from '../../localizations/translate'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,9 +48,6 @@ const Login = (props) => {
   return (
     <div className={classes.root}>
       <div className={classes.loginContainer}>
-      <Typography component="h1" variant="h5">
-        {translate('sign.logo')}
-        </Typography>
       <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>

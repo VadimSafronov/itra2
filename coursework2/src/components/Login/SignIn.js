@@ -61,12 +61,12 @@ const SignIn = (props) => {
     <Container onSubmit={props.handleSubmit} component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        {/* <Avatar className={classes.avatar}>
+        <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
-        </Avatar> */}
-        {/* <Typography component="h1" variant="h5">
+        </Avatar>
+         <Typography component="h1" variant="h5">
         {translate('sign.logo')}
-        </Typography> */}
+        </Typography>
         <form className={classes.form} noValidate>
           <Field
             variant="outlined"
