@@ -9,6 +9,8 @@ import GoogleAuth from "./GoogleAuth";
 import FacebookAuth from './FacebookAuth';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import translate from '../../localizations/translate'
 
 const useStyles = makeStyles((theme) => ({
   root: {
